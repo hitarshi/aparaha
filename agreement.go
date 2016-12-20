@@ -511,15 +511,15 @@ func (t *ManageLoan) create_agreement(stub shim.ChaincodeStubInterface, args []s
 	return nil, nil
 }
 
-func NewTimer(seconds int, action func()) {
-  timer := time.NewTimer(time.Seconds * time.Duration(seconds))
-  
-  go func() {
-    <-timer.C
-    action()
-  }()
-  
-  return timer
+func NewTimer(seconds int, action func()) *time.Timer {
+	timer := time.NewTimer(time.Second * time.Duration(seconds))
+
+	go func() {
+		<-timer.C
+		action()
+	}()
+
+	return timer
 }
 
 func action () {
