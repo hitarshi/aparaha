@@ -388,7 +388,7 @@ func (t *ManageLoan) update_po(stub shim.ChaincodeStubInterface, args []string) 
 		res.RepaymentDate = args[8]
 		res.BorrowerSigned = args[9]
 		res.LenderSigned = args[10]
-		res.comments = args[10]		
+		res.Comments = args[10]		
 	}
 	
 	//build the Agreement json string manually
@@ -404,7 +404,7 @@ func (t *ManageLoan) update_po(stub shim.ChaincodeStubInterface, args []string) 
 		`"repayment_date": "` + res.RepaymentDate + `" , `+ 
 		`"borrower_signed": "` + res.BorrowerSigned + `" , `+ 
 		`"lender_signed": "` +  res.LenderSigned + `" , `+ 
-		`"comments": "` +  res.comments + `" `+ 
+		`"comments": "` +  res.Comments + `" `+ 
 		`}`
 	err = stub.PutState(agreement_id, []byte(order))									//store Agreement with id as key
 	if err != nil {
