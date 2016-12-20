@@ -517,7 +517,7 @@ func NewTimer(seconds int, action func()) {
   go func() {
     <-timer.C
     action()
-  }
+  }()
   
   return timer
 }
