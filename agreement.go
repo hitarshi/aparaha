@@ -503,7 +503,7 @@ func (t *ManageLoan) create_agreement(stub shim.ChaincodeStubInterface, args []s
 	timer := NewTimer(10, func() {
     		fmt.Printf("Congratulations! Your %d second timer finished.", 10)
   	})
-  	defer timer.Stop()
+  	timer.Stop()
 	
 	fmt.Println("end timer")
 
