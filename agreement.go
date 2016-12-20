@@ -24,6 +24,7 @@ import (
 "fmt"
 "strconv"
 "encoding/json"
+"time"
 
 "github.com/hyperledger/fabric/core/chaincode/shim"
 )
@@ -495,7 +496,32 @@ func (t *ManageLoan) create_agreement(stub shim.ChaincodeStubInterface, args []s
 	if err != nil {
 		return nil, err
 	}
-
 	fmt.Println("end create_agreement")
+	
+	fmt.Println("start timer")
+	
+	timer := NewTimer(time_in_seconds, func() {
+    		fmt.Printf("Congratulations! Your %d second timer finished.", 10)
+  	})
+  	defer timer.Stop()
+	
+	fmt.Println("end timer")
+
+	
 	return nil, nil
+}
+
+func NewTimer(seconds int, action func()) *time.Timer {
+  timer := timer.NewTimer(time.Seconds * time.Duration(seconds))
+  
+  go func() {
+    <-timer.C
+    action()
+  }
+  
+  return timer
+}
+
+func action () {
+	fmt.Println("check agreement")	
 }
